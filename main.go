@@ -1,6 +1,9 @@
 package main
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+)
 
 type server struct {
 	address string
@@ -13,6 +16,6 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func main() {
 	s := &server{address: ":8080"}
 	if err := http.ListenAndServe(s.address, s); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 }
